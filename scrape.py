@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-import databases
+import data_classes
 
 
 def scrape_smw_hacks(moderated=True, pagination=0):
