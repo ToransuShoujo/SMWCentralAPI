@@ -35,7 +35,7 @@ def scrape_smw_hacks(moderated=True, pagination=0):
 
             try:
                 # noinspection PyUnresolvedReferences
-                current_hack.date = _date_attribute['datetime']
+                current_hack.dates = _date_attribute['datetime']
             except KeyError:
                 pass
 
@@ -49,6 +49,6 @@ def scrape_smw_hacks(moderated=True, pagination=0):
         current_hack.difficulty = secondary_hack_data[3].text
         current_hack.author = secondary_hack_data[4].find_next('a').text
 
-        hack_list.append(current_hack.__dict__)
+        hack_list.append(current_hack.serialize())
 
     return hack_list

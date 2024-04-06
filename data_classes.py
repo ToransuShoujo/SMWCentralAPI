@@ -1,60 +1,56 @@
-class SMWHackInfo:
-    def __init__(self, id_=None, title=None, author=None, exits=None, difficulty=None,
-                 date=None, demo=None, hall_of_fame=None, moderator=None):
-        self.id_ = id_
-        self.title = title
-        self.author = author
-        self.exits = exits
-        self.difficulty = difficulty
-        self.date = date
-        self.demo = demo
-        self.hall_of_fame = hall_of_fame
-        self.moderator = moderator
+from typing import List
+from sqlalchemy import String, Integer, inspect
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
-    id_ = None
-    title = None
-    author = None
-    exits = None
-    difficulty = None
-    date = None
-    demo = None
-    hall_of_fame = None
-    moderator = None
+
+class Serializer(object):
+    def serialize(self):
+        return {key: getattr(self, key) for key in inspect(self).attrs.keys()}
+
+    @staticmethod
+    def serialize_list(element_list):
+        return [element.serialize() for element in element_list]
+
+
+class Base(DeclarativeBase):
+    pass
+
+
+class SMWHackInfo(Base, Serializer):
+    __tablename__ = 'smw_hacks'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    title: Mapped[str] = mapped_column(String())
+    author: Mapped[List[str]] = mapped_column(String())
+    exits: Mapped[int] = mapped_column(Integer())
+    difficulty: Mapped[str] = mapped_column(String())
+    dates: Mapped[List[str]] = mapped_column(String())
+    demo: Mapped[bool] = mapped_column(Integer())
+    hall_of_fame: Mapped[bool] = mapped_column(Integer())
+
+    def serialize(self):
+        d = Serializer.serialize(self)
+        return d
 
 
 class YIHackInfo:
-    def __init__(self, id_=None, title=None, author=None, levels=None, date=None, demo=None, moderator=None):
-        self.id_ = id_
-        self.title = title
-        self.author = author
-        self.levels = levels
-        self.date = date
-        self.demo = demo
-        self.moderator = moderator
+    __tablename__ = 'yi_hacks'
 
-    id_ = None
-    title = None
-    author = None
-    levels = None
-    date = None
-    demo = None
-    moderator = None
+    id: Mapped[int] = mapped_column(primary_key=True)
+    title: Mapped[str] = mapped_column(String())
+    author: Mapped[List[str]] = mapped_column(String())
+    levels: Mapped[int] = mapped_column(Integer())
+    dates: Mapped[List[str]] = mapped_column(String())
+    demo: Mapped[bool] = mapped_column(Integer())
 
 
 class SM64HackInfo:
-    def __init__(self, id_=None, title=None, author=None, stars=None, difficulty=None, date=None, demo=None):
-        self.id_ = id_
-        self.title = title
-        self.author = author
-        self.stars = stars
-        self.date = date
-        self.difficulty = difficulty
-        self.demo = demo
+    __tablename__ = 'sm64_hacks'
 
-    id_ = None
-    title = None
-    author = None
-    stars = None
-    difficulty = None
-    date = None
-    demo = None
+    id: Mapped[int] = mapped_column(primary_key=True)
+    title: Mapped[str] = mapped_column(String())
+    author: Mapped[List[str]] = mapped_column(String())
+    stars: Mapped[int] = mapped_column(Integer())
+    difficulty: Mapped[str] = mapped_column(String())
+    dates: Mapped[List[str]] = mapped_column(String())
+    demo: Mapped[bool] = mapped_column(Integer())
