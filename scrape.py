@@ -18,7 +18,7 @@ def scrape_smw_hacks(moderated=True, pagination=0):
     # Pull the basic hack data, which includes hack title, download URL, and time uploaded
     base_hack_data = smw_soup.find_all("td", {"class": "text"})
     for hack_data in base_hack_data:
-        current_hack = databases.SMWHackInfo()
+        current_hack = data_classes.SMWHackInfo()
 
         # noinspection PyUnresolvedReferences
         _title_url_attribute = hack_data.a

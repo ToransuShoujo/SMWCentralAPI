@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="smwhacks.sqlite" uuid="5531f8b5-65c0-44e0-ab2d-01c895739f48">
+    <data-source source="LOCAL" name="smw_central.db" uuid="5031167c-9082-480b-99dd-2c791705ba0a">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
-      <remarks>Local database for SMW hack information</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:smwhacks.sqlite</jdbc-url>
+      <jdbc-url>jdbc:sqlite:smw_central.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
