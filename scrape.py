@@ -21,17 +21,16 @@ def scrape_smw_hacks(moderated=True, pagination=0):
         current_hack = data_classes.SMWHackInfo()
 
         # noinspection PyUnresolvedReferences
-        _title_url_attribute = hack_data.a
+        _url_attribute = hack_data.a
         _date_attribute = hack_data.find_next('time')
 
-        if _title_url_attribute:
-            current_hack.title = _title_url_attribute.text if _title_url_attribute else None
-            if (not moderated) and ('moderated' in _title_url_attribute.find_parent('td').text):
-                _moderator_attribute = _title_url_attribute.find_next('a')
+        if _url_attribute:
+            current_hack.title = _url_attribute.text if _url_attribute else None
+            if (not moderated) and ('moderated' in _url_attribute.find_parent('td').text):
+                _moderator_attribute = _url_attribute.find_next('a')
                 current_hack.moderator = _moderator_attribute.text
-            # TODO: Swap download URL for id attribute
-            current_hack.download_url = f"https://smwcentral.net{_title_url_attribute['href']}" \
-                if _title_url_attribute['href'] else None
+            current_hack.id = re.findall('[0-9]+', _url_attribute['href'])[0] \
+                if _url_attribute['href'] else None
 
             try:
                 # noinspection PyUnresolvedReferences
