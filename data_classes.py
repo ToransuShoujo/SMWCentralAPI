@@ -21,7 +21,7 @@ class SMWHackInfo(Base, Serializer):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(String())
-    author: Mapped[List[str]] = mapped_column(String())
+    authors: Mapped[List[str]] = mapped_column(String())
     exits: Mapped[int] = mapped_column(Integer())
     difficulty: Mapped[str] = mapped_column(String())
     dates: Mapped[List[str]] = mapped_column(String())
@@ -38,7 +38,7 @@ class YIHackInfo:
 
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(String())
-    author: Mapped[List[str]] = mapped_column(String())
+    authors: Mapped[List[str]] = mapped_column(String())
     levels: Mapped[int] = mapped_column(Integer())
     dates: Mapped[List[str]] = mapped_column(String())
     demo: Mapped[bool] = mapped_column(Integer())
@@ -49,7 +49,7 @@ class SM64HackInfo:
 
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(String())
-    author: Mapped[List[str]] = mapped_column(String())
+    authors: Mapped[List[str]] = mapped_column(String())
     stars: Mapped[int] = mapped_column(Integer())
     difficulty: Mapped[str] = mapped_column(String())
     dates: Mapped[List[str]] = mapped_column(String())
