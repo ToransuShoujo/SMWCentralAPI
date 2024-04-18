@@ -24,13 +24,19 @@ class SMWHackInfo(Base, Serializer):
     authors: Mapped[List[str]] = mapped_column(String())
     exits: Mapped[int] = mapped_column(Integer())
     difficulty: Mapped[str] = mapped_column(String())
-    dates: Mapped[List[str]] = mapped_column(String())
+    submissions: Mapped[List[str]] = mapped_column(String())
+    acceptances: Mapped[List[str]] = mapped_column(String())
     demo: Mapped[bool] = mapped_column(Integer())
     hall_of_fame: Mapped[bool] = mapped_column(Integer())
 
     def serialize(self):
         d = Serializer.serialize(self)
         return d
+
+    def __repr__(self):
+        return f"SMWHackInfo(id={self.id}, title={self.title}, authors={self.authors}, exits {self.exits},\
+        difficulty={self.difficulty}, submissions={self.submissions}, acceptances={self.acceptances}, demo={self.demo},\
+        hall_of_fame={self.hall_of_fame}"
 
 
 class YIHackInfo:
@@ -40,7 +46,8 @@ class YIHackInfo:
     title: Mapped[str] = mapped_column(String())
     authors: Mapped[List[str]] = mapped_column(String())
     levels: Mapped[int] = mapped_column(Integer())
-    dates: Mapped[List[str]] = mapped_column(String())
+    submissions: Mapped[List[str]] = mapped_column(String())
+    acceptances: Mapped[List[str]] = mapped_column(String())
     demo: Mapped[bool] = mapped_column(Integer())
 
 
@@ -52,5 +59,6 @@ class SM64HackInfo:
     authors: Mapped[List[str]] = mapped_column(String())
     stars: Mapped[int] = mapped_column(Integer())
     difficulty: Mapped[str] = mapped_column(String())
-    dates: Mapped[List[str]] = mapped_column(String())
+    submissions: Mapped[List[str]] = mapped_column(String())
+    acceptances: Mapped[List[str]] = mapped_column(String())
     demo: Mapped[bool] = mapped_column(Integer())
